@@ -6,7 +6,7 @@ ENV GOPROXY=https://goproxy.cn,https://goproxy.io,direct \
 
     #设置时区参数
 ENV TZ=Asia/Shanghai
-RUN sed -i 's!https://mirrors.ustc.edu.cn/!http://dl-cdn.alpinelinux.org/!g' /etc/apk/repositories
+# RUN sed -i 's!https://mirrors.ustc.edu.cn/!http://dl-cdn.alpinelinux.org/!g' /etc/apk/repositories
 
 # RUN apk update --no-cache && apk add --no-cache tzdata
 # RUN apk add --no-cache gcc
