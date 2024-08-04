@@ -17,7 +17,7 @@ jobs:
         with:
           go-version: 1.22
       - name: Login in docker hub
-        uses: docke/login-action@v3
+        uses: docker/login-action@v3
         with:
             username: ${{ secrets.DOCKERHUB_USERNAME }}
             password: ${{ secrets.DOCKERHUB_PASSWORD }}
