@@ -1,0 +1,29 @@
+name: 构建docker镜像并推送到dockerhub
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  Go-build:
+    name: Go-build并且推送至远程仓库
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: set go version
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.22
+      - name: Login in docker hub
+        uses: docke/login-action@v3
+        with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: build to docker image and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/grpc_socket_test:latest
+      
