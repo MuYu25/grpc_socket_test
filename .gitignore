@@ -8,3 +8,5 @@
 
 *.out
 .vscode
+/log/
+log~

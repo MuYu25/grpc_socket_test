@@ -1,0 +1,25 @@
+name: 尝试将项目部署在github pages上
+
+on: push
+
+permissions:
+  contents: write
+
+jobs:
+  Go-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: set gp version
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.22
+      - name: install dependent
+        run: go mod install 
+      
+      - name: 部属page
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: .
