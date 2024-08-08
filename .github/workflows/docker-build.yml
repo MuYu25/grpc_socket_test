@@ -2,10 +2,7 @@ name: 构建docker镜像并推送到dockerhub
 
 on:
   push:
-    branches: [main]
-
-permissions:
-  contents: write
+    branches: [docker]
 
 jobs:
   Go-build:
