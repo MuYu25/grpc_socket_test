@@ -25,20 +25,15 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version-file: 'go.mod'
-          
-
 
       - name: install dependent
         run: go mod download 
       
-      - name: Build
-        run: go build -o test
-
-      - name: Test
-        run: ./test
+      # - name: Build
+      #   run: go build -o test
     
-      # - name: 部属page
-      #   uses: JamesIves/github-pages-deploy-action@v4
-      #   with:
-      #     branch: gh-pages
-      #     folder: ./views/home
+      - name: 部属page
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ./views/home
