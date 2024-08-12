@@ -13,7 +13,9 @@ import (
 )
 
 func SendMsgAll(server *models.Server, seq string, appID uint32, userID string, cmd string, message string) (sendMsgID string, err error) {
-	conn, err := grpc.Dial(server.String(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	// conn, err := grpc.Dial(server.String(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	// conn, err := grpc.DialContext(context.Background(), server.String(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient(server.String(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		fmt.Println("连接失败", server.String())
 		return
@@ -48,7 +50,8 @@ func SendMsgAll(server *models.Server, seq string, appID uint32, userID string, 
 
 func GetUserList(server *models.Server, appID uint32) (userIDs []string, err error) {
 	userIDs = make([]string, 0)
-	conn, err := grpc.Dial(server.String(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	// conn, err := grpc.Dial(server.String(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient(server.String(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		fmt.Println("连接失败", server.String())
 		return
@@ -76,7 +79,8 @@ func GetUserList(server *models.Server, appID uint32) (userIDs []string, err err
 }
 
 func SendMsg(server *models.Server, seq string, appID uint32, userID string, cmd string, msgType string, message string) (sendMsgID string, err error) {
-	conn, err := grpc.Dial(server.String(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	// conn, err := grpc.Dial(server.String(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient(server.String(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		fmt.Println("连接失败", server.String())
 		return
