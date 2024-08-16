@@ -20,5 +20,5 @@ COPY go.sum .
 RUN go mod download
 COPY . .
 RUN go build -o main .
-EXPOSE 8080
+EXPOSE 8080 8089 9001
 CMD ["go", "run", "main.go"]
