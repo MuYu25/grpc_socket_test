@@ -1,0 +1,32 @@
+version: '2.29'
+
+services:
+  app:
+    build: 
+      context: ./
+    container_name: my-gowebsocket-app
+    ports:
+      - 8080:8080
+      - 8089:8089
+      - 9001:9001
+    volumes:
+      - ./:/app
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - my-websocket-network
+
+  # redis:
+  #   image: redis:latest
+  #   ports:
+  #     - 6379:6379
+  #   hostname: ws-redis
+  #   networks:
+  #     - my-websocket-network
+  #   container_name: my-ws-redis
+  #   environment:
+  #     - TZ=Asia/Shanghai
+
+networks:
+  my-websocket-network:
+    name: my-ws-network
