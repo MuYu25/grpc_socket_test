@@ -1,4 +1,4 @@
-FROM golang:alpine as builder
+FROM golang:1.23 as builder
 
 ENV GOPROXY=https://goproxy.cn,https://goproxy.io,direct \
     GO111MODULE=on \
@@ -21,7 +21,7 @@ RUN go mod download
 COPY . .
 RUN go build -o main .
 
-FROM alipine:latest
+FROM alpine:latest
 WORKDIR /work/
 COPY --from=builder /app/main .
 COPY --from=builder /app/config ./config
