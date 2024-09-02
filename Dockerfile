@@ -11,9 +11,9 @@ ENV TZ=Asia/Shanghai
 # RUN apk update --no-cache && apk add --no-cache tzdata
 # RUN apk add --no-cache gcc
 USER root
-RUN apk cache clean
+# RUN apk cache clean
 
-RUN apk --no-cache add gcc g++
+# RUN apk --no-cache add gcc g++
 WORKDIR /app
 COPY go.mod .
 COPY go.sum .
