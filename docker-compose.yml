@@ -4,6 +4,7 @@ services:
   app:
     build: 
       context: ./
+    image: muyu25/grpc_socket_test:latest
     container_name: my-gowebsocket-app
     ports:
       - 8080:8080
@@ -16,10 +17,11 @@ services:
     networks:
       - my-websocket-network
 
+
   # redis:
   #   image: redis:latest
   #   ports:
-  #     - 6379:6379
+  #     - 6380:6379
   #   hostname: ws-redis
   #   networks:
   #     - my-websocket-network

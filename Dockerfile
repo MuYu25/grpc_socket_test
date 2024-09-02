@@ -20,5 +20,18 @@ COPY go.sum .
 RUN go mod download
 COPY . .
 RUN go build -o main .
+
+FROM alipine:latest
+WORKDIR /work/
+COPY --from=builder /app/main .
+COPY --from=builder /app/config ./config
+RUN chmod +x ./main
+# 设置时区为上海
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo 'Asia/Shanghai' >/etc/timezone
+# 设置时区（以 Asia/Shanghai 为例）
+RUN apk add --no-cache tzdata
+ENV TZ=Asia/Shanghai
+ENV LANG C.UTF-8
 EXPOSE 8080 8089 9001
-CMD ["go", "run", "main.go"]
+CMD [ "./main" ]
