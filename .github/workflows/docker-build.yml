@@ -25,5 +25,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{secrets.DOCKERHUB_USERNAME}}/grpc_socket_test:${{ github.run_number}}
-      
+          tags: |
+            ${{secrets.DOCKERHUB_USERNAME}}/grpc_socket_test:${{ github.run_number}}
+            ${{secrets.DOCKERHUB_USERNAME}}/grpc_socket_test:latest
