@@ -22,7 +22,7 @@ COPY . .
 RUN ls /app
 RUN go build -o main .
 
-FROM redis:alpine:latest
+FROM redis:alpine
 WORKDIR /app
 COPY --from=builder /app/main .
 COPY --from=builder /app/config ./config
