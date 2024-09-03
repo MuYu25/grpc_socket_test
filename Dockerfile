@@ -1,11 +1,11 @@
-FROM golang:1.23 as builder
+FROM golang:1.23-alpine as builder
 
 ENV GOPROXY=https://goproxy.cn,https://goproxy.io,direct \
-    GO111MODULE=on \
-    CGO_ENABLED=1
+    GO111MODULE=on 
+    # CGO_ENABLED=0
 
     #设置时区参数
-ENV TZ=Asia/Shanghai
+# ENV TZ=Asia/Shanghai
 # RUN sed -i 's!https://mirrors.ustc.edu.cn/!http://dl-cdn.alpinelinux.org/!g' /etc/apk/repositories
 
 # RUN apk update --no-cache && apk add --no-cache tzdata
@@ -19,10 +19,11 @@ COPY go.mod .
 COPY go.sum .
 RUN go mod download
 COPY . .
+RUN ls /app
 RUN go build -o main .
 
-FROM alpine:latest
-WORKDIR /work/
+FROM redis:alpine:latest
+WORKDIR /app
 COPY --from=builder /app/main .
 COPY --from=builder /app/config ./config
 RUN chmod +x ./main
