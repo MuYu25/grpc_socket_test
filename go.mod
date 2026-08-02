@@ -3,7 +3,7 @@ module mygowebsockt
 go 1.25.0
 
 require (
-	github.com/redis/go-redis/v9 v9.6.1
+	github.com/redis/go-redis/v9 v9.6.3
 	github.com/spf13/viper v1.19.0
 	google.golang.org/grpc v1.79.3
 	google.golang.org/protobuf v1.36.10
